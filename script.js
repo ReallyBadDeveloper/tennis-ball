@@ -29,7 +29,8 @@ document.addEventListener('mousemove', (event) => {
 	mouse.y = event.clientY
 })
 
-ball.addEventListener('mousedown', () => {
+ball.addEventListener('mousedown', (event) => {
+    event.preventDefault()
 	holdingBall = true
 	balloffx = mouse.x - bx
 	balloffy = mouse.y - by
@@ -37,7 +38,8 @@ ball.addEventListener('mousedown', () => {
 	yv = 0
 })
 
-document.addEventListener('mouseup', () => {
+document.addEventListener('mouseup', (event) => {
+    event.preventDefault()
 	if (holdingBall == true) {
 		holdingBall = false
 		xv = (mouse.x - mouse.px) * flinginess
