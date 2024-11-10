@@ -51,6 +51,14 @@ function serializeCSS(val) {
 	return newVal
 }
 
+function clearSelection() {
+    if (window.getSelection) {
+        window.getSelection().removeAllRanges()
+    } else if (document.selection) {
+        document.selection.empty()
+    }
+}
+
 setInterval(() => {
 	if (holdingBall) {
 		bx = mouse.x - balloffx
@@ -60,9 +68,9 @@ setInterval(() => {
 		bx += xv
 		by += yv
 		yv += gravity
-        if (by == 0) {
-            by = 5
-        }
+		if (by == 0) {
+			by = 5
+		}
 		if (xv > 0.1) {
 			xv -= airres
 		}
@@ -96,4 +104,5 @@ setInterval(() => {
 	}
 	ball.style.top = by + 'px'
 	ball.style.left = bx + 'px'
+    clearSelection()
 }, 10)
